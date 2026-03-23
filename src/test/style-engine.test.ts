@@ -26,7 +26,7 @@ describe("style options", () => {
       componentCharacter: "card",
       motionIntensity: "light"
     });
-    expect(result.semantic.colorPrimary).toBeTruthy();
-    expect(result.semantic.shadowCard).toBeTruthy();
+    expect(result.semantic.colorPrimary).toBe("#4f8cff");
+    expect(result.semantic.shadowCard).toBe("0 12px 32px rgba(15, 23, 42, 0.12)");
   });
 });
