@@ -11,10 +11,9 @@ describe("buildStylePrompt", () => {
       motionIntensity: "light"
     });
 
-    expect(prompt).toContain("tech");
-    expect(prompt).toContain("cool");
-    expect(prompt).toContain("card");
-    expect(prompt).toContain("light");
+    expect(prompt).toBe(
+      "Visual direction: tech. Color tendency: cool. Component character: card. Motion intensity: light. Use React and Ant Design components. Keep the result cohesive, restrained, and consistent with the chosen direction."
+    );
   });
 });
 
@@ -27,8 +26,10 @@ describe("buildTailwindHelpers", () => {
       motionIntensity: "none"
     });
 
-    expect(helpers.container).toContain("mx-auto");
-    expect(helpers.panel).toContain("border");
-    expect(helpers.stack).toContain("gap");
+    expect(helpers).toEqual({
+      container: "mx-auto max-w-5xl px-6 py-8",
+      panel: "rounded-xl border-2 border-slate-300 bg-white",
+      stack: "flex flex-col gap-4"
+    });
   });
 });
