@@ -8,6 +8,7 @@ import type {
 
 export interface SemanticStyleTokens {
   colorPrimary: string;
+  radiusBase: number;
   shadowCard: string;
 }
 
@@ -55,11 +56,18 @@ const shadowPalette: Record<ComponentCharacter, Record<MotionIntensity, string>>
   }
 };
 
+const radiusPalette: Record<ComponentCharacter, number> = {
+  flat: 6,
+  card: 12,
+  bordered: 8
+};
+
 export function buildStyleResult(selection: StyleSelection): StyleResult {
   return {
     selection: { ...selection },
     semantic: {
       colorPrimary: colorPalette[selection.overallStyle][selection.colorTendency],
+      radiusBase: radiusPalette[selection.componentCharacter],
       shadowCard: shadowPalette[selection.componentCharacter][selection.motionIntensity]
     }
   };

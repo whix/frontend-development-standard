@@ -27,6 +27,7 @@ describe("style options", () => {
       motionIntensity: "light"
     });
     expect(result.semantic.colorPrimary).toBe("#4f8cff");
+    expect(result.semantic.radiusBase).toBe(12);
     expect(result.semantic.shadowCard).toBe("0 12px 32px rgba(15, 23, 42, 0.12)");
   });
 });
