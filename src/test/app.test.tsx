@@ -9,7 +9,9 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByText("Style Engine")).toBeTruthy();
+    expect(screen.getByLabelText("Studio workspace")).toBeTruthy();
     expect(screen.getByText("Overall Style")).toBeTruthy();
     expect(screen.getByText("Preview")).toBeTruthy();
+    expect(screen.getAllByRole("button").length).toBeGreaterThan(0);
   });
 });
