@@ -9,8 +9,10 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByText("Style Engine")).toBeTruthy();
-    expect(screen.getByText("Components")).toBeTruthy();
-    expect(screen.getByText("Page Fragments")).toBeTruthy();
+    expect(screen.getByLabelText("Studio workspace")).toBeTruthy();
+    expect(screen.getByText("Overall Style")).toBeTruthy();
+    expect(screen.getByRole("tab", { name: "Components" })).toBeTruthy();
+    expect(screen.getByRole("tab", { name: "Page Fragments" })).toBeTruthy();
     expect(screen.getByText("Primary Button")).toBeTruthy();
     expect(screen.getByText("Hero Section")).toBeTruthy();
   });

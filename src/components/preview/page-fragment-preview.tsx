@@ -15,12 +15,12 @@ export default function PageFragmentPreview() {
       </Card>
 
       <Row gutter={16}>
-        <Col span={12}>
+        <Col xs={24} md={12}>
           <Card title="Feature Block">
             <Typography.Text>Shared spacing and hierarchy for content sections.</Typography.Text>
           </Card>
         </Col>
-        <Col span={12}>
+        <Col xs={24} md={12}>
           <Card title="Stats Block">
             <Typography.Text>Dense data cards can reuse the same style tokens.</Typography.Text>
           </Card>
