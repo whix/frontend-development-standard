@@ -18,13 +18,13 @@ export default function StudioLayout({ controls, preview }: StudioLayoutProps) {
             color: "#64748b"
           }}
         >
-          Frontend Style System
+          前端样式系统
         </p>
-        <h1>Style Engine</h1>
+        <h1>样式规范引擎</h1>
       </header>
 
       <section
-        aria-label="Studio workspace"
+        aria-label="样式工作区"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",

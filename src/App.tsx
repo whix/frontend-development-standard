@@ -36,7 +36,7 @@ export default function App() {
               items={[
                 {
                   key: "components",
-                  label: "Components",
+                  label: "组件预览",
                   children: (
                     <ComponentPreview selection={selection} styleResult={styleResult} />
                   ),
@@ -44,7 +44,7 @@ export default function App() {
                 },
                 {
                   key: "page-fragments",
-                  label: "Page Fragments",
+                  label: "页面片段",
                   children: (
                     <PageFragmentPreview
                       selection={selection}
