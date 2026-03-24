@@ -44,6 +44,11 @@ describe("App", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Tech" }));
     expect(screen.getByText(/Overall style preview: tech/i)).toBeTruthy();
+    expect(screen.getByText(/Fragment tone: tech/i)).toBeTruthy();
+
+    fireEvent.click(antdThemeTab);
+    expect(screen.getByText(/"colorPrimary": "#4f8cff"/)).toBeTruthy();
+    expect(screen.getByText(/"borderRadius": 6/)).toBeTruthy();
 
     fireEvent.click(aiPromptTab);
     expect(

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tabs } from "antd";
+import { ConfigProvider, Tabs } from "antd";
 import { defaultStyleSelection } from "./data/style-options";
 import { toAntdTheme } from "./lib/antd-adapter";
 import { buildStylePrompt } from "./lib/prompt-generator";
@@ -18,7 +18,8 @@ function formatJson(value: unknown): string {
 export default function App() {
   const [selection, setSelection] = useState(defaultStyleSelection);
   const styleResult = buildStyleResult(selection);
-  const antdThemeCode = formatJson(toAntdTheme(styleResult.semantic));
+  const antdTheme = toAntdTheme(styleResult.semantic);
+  const antdThemeCode = formatJson(antdTheme);
   const promptText = buildStylePrompt(selection);
   const tailwindHelpersCode = formatJson(buildTailwindHelpers(selection));
 
@@ -28,37 +29,39 @@ export default function App() {
         <StyleControls selection={selection} onSelectionChange={setSelection} />
       }
       preview={
-        <div style={{ display: "grid", gap: 20 }}>
-          <Tabs
-            defaultActiveKey="components"
-            items={[
-              {
-                key: "components",
-                label: "Components",
-                children: (
-                  <ComponentPreview selection={selection} styleResult={styleResult} />
-                ),
-                forceRender: true
-              },
-              {
-                key: "page-fragments",
-                label: "Page Fragments",
-                children: (
-                  <PageFragmentPreview
-                    selection={selection}
-                    styleResult={styleResult}
-                  />
-                ),
-                forceRender: true
-              }
-            ]}
-          />
-          <ExportPanel
-            antdThemeCode={antdThemeCode}
-            promptText={promptText}
-            tailwindHelpersCode={tailwindHelpersCode}
-          />
-        </div>
+        <ConfigProvider theme={antdTheme}>
+          <div style={{ display: "grid", gap: 20 }}>
+            <Tabs
+              defaultActiveKey="components"
+              items={[
+                {
+                  key: "components",
+                  label: "Components",
+                  children: (
+                    <ComponentPreview selection={selection} styleResult={styleResult} />
+                  ),
+                  forceRender: true
+                },
+                {
+                  key: "page-fragments",
+                  label: "Page Fragments",
+                  children: (
+                    <PageFragmentPreview
+                      selection={selection}
+                      styleResult={styleResult}
+                    />
+                  ),
+                  forceRender: true
+                }
+              ]}
+            />
+            <ExportPanel
+              antdThemeCode={antdThemeCode}
+              promptText={promptText}
+              tailwindHelpersCode={tailwindHelpersCode}
+            />
+          </div>
+        </ConfigProvider>
       }
     />
   );
