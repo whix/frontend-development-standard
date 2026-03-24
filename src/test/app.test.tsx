@@ -5,13 +5,13 @@ import { describe, expect, it } from "vitest";
 import App from "../App";
 
 describe("App", () => {
-  it("renders the preview surfaces", () => {
+  it("renders the studio title", () => {
     render(<App />);
 
     expect(screen.getByText("Style Engine")).toBeTruthy();
-    expect(screen.getByText("Components")).toBeTruthy();
-    expect(screen.getByText("Page Fragments")).toBeTruthy();
-    expect(screen.getByText("Primary Button")).toBeTruthy();
-    expect(screen.getByText("Hero Section")).toBeTruthy();
+    expect(screen.getByLabelText("Studio workspace")).toBeTruthy();
+    expect(screen.getByText("Overall Style")).toBeTruthy();
+    expect(screen.getByText("Preview")).toBeTruthy();
+    expect(screen.getAllByRole("button").length).toBeGreaterThan(0);
   });
 });

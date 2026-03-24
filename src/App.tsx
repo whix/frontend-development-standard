@@ -1,31 +1,26 @@
-import { Tabs } from "antd";
 import StyleControls from "./components/config/style-controls";
 import StudioLayout from "./components/layout/studio-layout";
-import ComponentPreview from "./components/preview/component-preview";
-import PageFragmentPreview from "./components/preview/page-fragment-preview";
 
 export default function App() {
   return (
     <StudioLayout
       controls={<StyleControls />}
       preview={
-        <Tabs
-          defaultActiveKey="components"
-          items={[
-            {
-              key: "components",
-              label: "Components",
-              children: <ComponentPreview />,
-              forceRender: true
-            },
-            {
-              key: "page-fragments",
-              label: "Page Fragments",
-              children: <PageFragmentPreview />,
-              forceRender: true
-            }
-          ]}
-        />
+        <div
+          style={{
+            display: "grid",
+            placeContent: "center",
+            minHeight: "100%",
+            borderRadius: 20,
+            border: "1px dashed rgba(148, 163, 184, 0.45)",
+            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.92))",
+            textAlign: "center",
+            gap: 12
+          }}
+        >
+          <h2>Preview</h2>
+          <p>Live style preview will appear here.</p>
+        </div>
       }
     />
   );
