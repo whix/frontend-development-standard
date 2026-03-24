@@ -30,4 +30,36 @@ describe("style options", () => {
     expect(result.semantic.radiusBase).toBe(12);
     expect(result.semantic.shadowCard).toBe("0 12px 32px rgba(15, 23, 42, 0.12)");
   });
+
+  it("maps overall style to deterministic preview layout variants", () => {
+    const techResult = buildStyleResult({
+      overallStyle: "tech",
+      colorTendency: "cool",
+      componentCharacter: "card",
+      motionIntensity: "light"
+    });
+
+    const brandResult = buildStyleResult({
+      overallStyle: "brand",
+      colorTendency: "warm",
+      componentCharacter: "bordered",
+      motionIntensity: "strong"
+    });
+
+    expect(techResult.previewLayout).toEqual({
+      navVariant: "utility-status",
+      heroVariant: "split-metrics",
+      featureVariant: "stacked-capabilities",
+      formVariant: "split-explainer",
+      testimonialVariant: "metrics-quotes"
+    });
+
+    expect(brandResult.previewLayout).toEqual({
+      navVariant: "slogan-cta",
+      heroVariant: "asymmetric-story",
+      featureVariant: "alternating-story",
+      formVariant: "brand-pitch",
+      testimonialVariant: "editorial-quotes"
+    });
+  });
 });
