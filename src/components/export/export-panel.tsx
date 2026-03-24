@@ -23,9 +23,9 @@ export default function ExportPanel({
             color: "#64748b"
           }}
         >
-          Exports
+          导出
         </p>
-        <h2 style={{ margin: 0 }}>Generated Outputs</h2>
+        <h2 style={{ margin: 0 }}>生成结果</h2>
       </div>
 
       <ExportTabs

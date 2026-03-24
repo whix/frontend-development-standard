@@ -18,23 +18,23 @@ export default function ExportTabs({
       items={[
         {
           key: "antd-theme",
-          label: "Ant Design Theme",
-          children: <CodeBlock label="Ant Design Theme" code={antdThemeCode} />,
+          label: "Ant Design 主题",
+          children: <CodeBlock label="Ant Design 主题" code={antdThemeCode} />,
           forceRender: true
         },
         {
           key: "ai-prompt",
-          label: "AI Prompt",
-          children: <CodeBlock label="AI Prompt" code={promptText} />,
+          label: "AI 提示词",
+          children: <CodeBlock label="AI 提示词" code={promptText} />,
           forceRender: true
         },
         {
           key: "tailwind-helpers",
-          label: "Tailwind Helpers",
+          label: "Tailwind 辅助",
           children: (
-            <CodeBlock label="Tailwind Helpers" code={tailwindHelpersCode}>
+            <CodeBlock label="Tailwind 辅助" code={tailwindHelpersCode}>
               <p style={{ margin: 0, color: "#cbd5e1" }}>
-                Layout helper classes for quick composition.
+                用于快速搭建布局的辅助类。
               </p>
             </CodeBlock>
           ),

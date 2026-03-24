@@ -88,25 +88,25 @@ export default function StyleControls({
             color: "#64748b"
           }}
         >
-          Configure
+          配置
         </p>
-        <h2>Style Controls</h2>
+        <h2>风格配置</h2>
       </div>
 
       <SelectionGroup
-        label="Overall Style"
+        label="整体风格"
         options={overallStyleOptions}
         selectedValue={selection.overallStyle}
         onSelect={(overallStyle) => onSelectionChange({ ...selection, overallStyle })}
       />
       <SelectionGroup
-        label="Color Tendency"
+        label="色彩倾向"
         options={colorTendencyOptions}
         selectedValue={selection.colorTendency}
         onSelect={(colorTendency) => onSelectionChange({ ...selection, colorTendency })}
       />
       <SelectionGroup
-        label="Component Character"
+        label="组件气质"
         options={componentCharacterOptions}
         selectedValue={selection.componentCharacter}
         onSelect={(componentCharacter) =>
@@ -114,7 +114,7 @@ export default function StyleControls({
         }
       />
       <SelectionGroup
-        label="Motion Intensity"
+        label="动效强度"
         options={motionIntensityOptions}
         selectedValue={selection.motionIntensity}
         onSelect={(motionIntensity) => onSelectionChange({ ...selection, motionIntensity })}

@@ -1,6 +1,11 @@
 import type { StyleResult } from "../../lib/style-engine";
 import type { StyleSelection } from "../../types/style";
 import { Card, Col, Row, Typography } from "antd";
+import {
+  getColorTendencyLabel,
+  getComponentCharacterLabel,
+  getOverallStyleLabel
+} from "../../data/style-options";
 
 interface PageFragmentPreviewProps {
   selection: StyleSelection;
@@ -14,7 +19,7 @@ export default function PageFragmentPreview({
   return (
     <div style={{ display: "grid", gap: 16, width: "100%" }}>
       <Card
-        title="Hero Section"
+        title="首屏区块"
         style={{
           borderRadius: styleResult.semantic.radiusBase,
           boxShadow: styleResult.semantic.shadowCard
@@ -22,13 +27,13 @@ export default function PageFragmentPreview({
       >
         <div style={{ display: "grid", gap: 12 }}>
           <Typography.Title level={3} style={{ marginBottom: 0 }}>
-            Build a cleaner style system before you generate the page.
+            在生成页面之前，先建立更清晰的风格系统。
           </Typography.Title>
           <Typography.Text>
-            Fragment tone: {selection.overallStyle}
+            片段气质：{getOverallStyleLabel(selection.overallStyle)}
           </Typography.Text>
           <Typography.Text type="secondary">
-            This fragment shows how a product hero can stay calm, readable, and consistent.
+            这个片段展示了产品首屏如何保持克制、易读且一致。
           </Typography.Text>
         </div>
       </Card>
@@ -36,27 +41,29 @@ export default function PageFragmentPreview({
       <Row gutter={16}>
         <Col xs={24} md={12}>
           <Card
-            title="Feature Block"
+            title="功能区块"
             style={{
               borderRadius: styleResult.semantic.radiusBase,
               boxShadow: styleResult.semantic.shadowCard
             }}
           >
             <Typography.Text>
-              Shared spacing and hierarchy for {selection.colorTendency} content sections.
+              为{getColorTendencyLabel(selection.colorTendency)}内容区块复用统一间距与层级。
             </Typography.Text>
           </Card>
         </Col>
         <Col xs={24} md={12}>
           <Card
-            title="Stats Block"
+            title="数据区块"
             style={{
               borderRadius: styleResult.semantic.radiusBase,
               boxShadow: styleResult.semantic.shadowCard
             }}
           >
             <Typography.Text>
-              Dense data cards can reuse the same {selection.componentCharacter} tokens.
+              高密度数据卡片也可以复用同一套
+              {getComponentCharacterLabel(selection.componentCharacter)}
+              token。
             </Typography.Text>
           </Card>
         </Col>
