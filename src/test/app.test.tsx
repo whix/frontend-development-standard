@@ -25,8 +25,13 @@ describe("App", () => {
     expect(tailwindHelpersTab.getAttribute("aria-selected")).toBe("false");
     expect(screen.getByText(/"borderRadius": 6/)).toBeTruthy();
     expect(screen.getByText("主按钮")).toBeTruthy();
+    expect(screen.getByText("导航栏")).toBeTruthy();
     expect(screen.getByText("首屏区块")).toBeTruthy();
+    expect(screen.getByText("功能介绍区")).toBeTruthy();
+    expect(screen.getByText("表单区")).toBeTruthy();
+    expect(screen.getByText("客户案例区")).toBeTruthy();
     expect(screen.getByText(/整体风格预览：简约/i)).toBeTruthy();
+    expect(screen.getByText("居中单栏")).toBeTruthy();
 
     fireEvent.click(aiPromptTab);
     expect(antdThemeTab.getAttribute("aria-selected")).toBe("false");
@@ -44,7 +49,8 @@ describe("App", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "科技" }));
     expect(screen.getByText(/整体风格预览：科技/i)).toBeTruthy();
-    expect(screen.getByText(/片段气质：科技/i)).toBeTruthy();
+    expect(screen.getByText("左文案 + 右指标面板")).toBeTruthy();
+    expect(screen.getByText("状态标签 + 工具操作区")).toBeTruthy();
 
     fireEvent.click(antdThemeTab);
     expect(screen.getByText(/"colorPrimary": "#4f8cff"/)).toBeTruthy();
@@ -56,5 +62,9 @@ describe("App", () => {
         "Visual direction: tech. Color tendency: cool. Component character: flat. Motion intensity: light. Use React and Ant Design components. Keep the result cohesive, restrained, and consistent with the chosen direction."
       )
     ).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "品牌" }));
+    expect(screen.getByText("非对称叙事布局")).toBeTruthy();
+    expect(screen.getByText("大引语 + 客户身份信息")).toBeTruthy();
   });
 });
