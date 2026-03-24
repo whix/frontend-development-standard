@@ -46,6 +46,27 @@ function OptionGroup({
   );
 }
 
+function SelectionGroup<T extends string>({
+  label,
+  options,
+  selectedValue,
+  onSelect
+}: {
+  label: string;
+  options: StyleOption<T>[];
+  selectedValue: T;
+  onSelect: (value: T) => void;
+}) {
+  return (
+    <OptionGroup
+      label={label}
+      options={options}
+      selectedValue={selectedValue}
+      onSelect={(value) => onSelect(value as T)}
+    />
+  );
+}
+
 interface StyleControlsProps {
   selection: StyleSelection;
   onSelectionChange: (selection: StyleSelection) => void;
@@ -72,19 +93,19 @@ export default function StyleControls({
         <h2>Style Controls</h2>
       </div>
 
-      <OptionGroup
+      <SelectionGroup
         label="Overall Style"
         options={overallStyleOptions}
         selectedValue={selection.overallStyle}
         onSelect={(overallStyle) => onSelectionChange({ ...selection, overallStyle })}
       />
-      <OptionGroup
+      <SelectionGroup
         label="Color Tendency"
         options={colorTendencyOptions}
         selectedValue={selection.colorTendency}
         onSelect={(colorTendency) => onSelectionChange({ ...selection, colorTendency })}
       />
-      <OptionGroup
+      <SelectionGroup
         label="Component Character"
         options={componentCharacterOptions}
         selectedValue={selection.componentCharacter}
@@ -92,7 +113,7 @@ export default function StyleControls({
           onSelectionChange({ ...selection, componentCharacter })
         }
       />
-      <OptionGroup
+      <SelectionGroup
         label="Motion Intensity"
         options={motionIntensityOptions}
         selectedValue={selection.motionIntensity}
