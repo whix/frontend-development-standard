@@ -1,20 +1,16 @@
-import { buildStylePrompt } from "../../lib/prompt-generator";
-import { buildTailwindHelpers } from "../../lib/tailwind-helpers";
-import { buildStyleResult } from "../../lib/style-engine";
-import { defaultStyleSelection } from "../../data/style-options";
-import { toAntdTheme } from "../../lib/antd-adapter";
 import ExportTabs from "./export-tabs";
 
-function formatJson(value: unknown): string {
-  return JSON.stringify(value, null, 2);
+interface ExportPanelProps {
+  antdThemeCode: string;
+  promptText: string;
+  tailwindHelpersCode: string;
 }
 
-export default function ExportPanel() {
-  const styleResult = buildStyleResult(defaultStyleSelection);
-  const antdTheme = toAntdTheme(styleResult.semantic);
-  const promptText = buildStylePrompt(defaultStyleSelection);
-  const tailwindHelpers = buildTailwindHelpers(defaultStyleSelection);
-
+export default function ExportPanel({
+  antdThemeCode,
+  promptText,
+  tailwindHelpersCode
+}: ExportPanelProps) {
   return (
     <section style={{ display: "grid", gap: 16 }}>
       <div>
@@ -33,9 +29,9 @@ export default function ExportPanel() {
       </div>
 
       <ExportTabs
-        antdThemeCode={formatJson(antdTheme)}
+        antdThemeCode={antdThemeCode}
         promptText={promptText}
-        tailwindHelpersCode={formatJson(tailwindHelpers)}
+        tailwindHelpersCode={tailwindHelpersCode}
       />
     </section>
   );

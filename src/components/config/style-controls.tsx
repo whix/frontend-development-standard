@@ -1,4 +1,4 @@
-import type { StyleOption } from "../../types/style";
+import type { StyleOption, StyleSelection } from "../../types/style";
 import {
   colorTendencyOptions,
   componentCharacterOptions,
@@ -8,10 +8,14 @@ import {
 
 function OptionGroup({
   label,
-  options
+  options,
+  selectedValue,
+  onSelect
 }: {
   label: string;
   options: StyleOption<string>[];
+  selectedValue: string;
+  onSelect: (value: string) => void;
 }) {
   return (
     <section aria-label={label} style={{ display: "grid", gap: 12 }}>
@@ -21,11 +25,16 @@ function OptionGroup({
           <button
             key={option.value}
             type="button"
+            aria-pressed={option.value === selectedValue}
+            onClick={() => onSelect(option.value)}
             style={{
-              border: "1px solid rgba(148, 163, 184, 0.35)",
+              border:
+                option.value === selectedValue
+                  ? "1px solid #0f172a"
+                  : "1px solid rgba(148, 163, 184, 0.35)",
               borderRadius: 999,
               padding: "10px 14px",
-              background: "#fff",
+              background: option.value === selectedValue ? "#e2e8f0" : "#fff",
               color: "#0f172a"
             }}
           >
@@ -37,7 +46,15 @@ function OptionGroup({
   );
 }
 
-export default function StyleControls() {
+interface StyleControlsProps {
+  selection: StyleSelection;
+  onSelectionChange: (selection: StyleSelection) => void;
+}
+
+export default function StyleControls({
+  selection,
+  onSelectionChange
+}: StyleControlsProps) {
   return (
     <div style={{ display: "grid", gap: 20 }}>
       <div>
@@ -55,10 +72,32 @@ export default function StyleControls() {
         <h2>Style Controls</h2>
       </div>
 
-      <OptionGroup label="Overall Style" options={overallStyleOptions} />
-      <OptionGroup label="Color Tendency" options={colorTendencyOptions} />
-      <OptionGroup label="Component Character" options={componentCharacterOptions} />
-      <OptionGroup label="Motion Intensity" options={motionIntensityOptions} />
+      <OptionGroup
+        label="Overall Style"
+        options={overallStyleOptions}
+        selectedValue={selection.overallStyle}
+        onSelect={(overallStyle) => onSelectionChange({ ...selection, overallStyle })}
+      />
+      <OptionGroup
+        label="Color Tendency"
+        options={colorTendencyOptions}
+        selectedValue={selection.colorTendency}
+        onSelect={(colorTendency) => onSelectionChange({ ...selection, colorTendency })}
+      />
+      <OptionGroup
+        label="Component Character"
+        options={componentCharacterOptions}
+        selectedValue={selection.componentCharacter}
+        onSelect={(componentCharacter) =>
+          onSelectionChange({ ...selection, componentCharacter })
+        }
+      />
+      <OptionGroup
+        label="Motion Intensity"
+        options={motionIntensityOptions}
+        selectedValue={selection.motionIntensity}
+        onSelect={(motionIntensity) => onSelectionChange({ ...selection, motionIntensity })}
+      />
     </div>
   );
 }

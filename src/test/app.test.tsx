@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import App from "../App";
 
 describe("App", () => {
-  it("renders the preview and export surfaces", async () => {
+  it("updates previews and exports when the overall style changes", async () => {
     render(<App />);
 
     expect(screen.getByText("Style Engine")).toBeTruthy();
@@ -26,6 +26,7 @@ describe("App", () => {
     expect(screen.getByText(/"borderRadius": 6/)).toBeTruthy();
     expect(screen.getByText("Primary Button")).toBeTruthy();
     expect(screen.getByText("Hero Section")).toBeTruthy();
+    expect(screen.getByText(/Overall style preview: minimal/i)).toBeTruthy();
 
     fireEvent.click(aiPromptTab);
     expect(antdThemeTab.getAttribute("aria-selected")).toBe("false");
@@ -40,5 +41,15 @@ describe("App", () => {
     expect(aiPromptTab.getAttribute("aria-selected")).toBe("false");
     expect(tailwindHelpersTab.getAttribute("aria-selected")).toBe("true");
     expect(screen.getByText(/"stack": "flex flex-col gap-6"/)).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "Tech" }));
+    expect(screen.getByText(/Overall style preview: tech/i)).toBeTruthy();
+
+    fireEvent.click(aiPromptTab);
+    expect(
+      screen.getByText(
+        "Visual direction: tech. Color tendency: cool. Component character: flat. Motion intensity: light. Use React and Ant Design components. Keep the result cohesive, restrained, and consistent with the chosen direction."
+      )
+    ).toBeTruthy();
   });
 });
