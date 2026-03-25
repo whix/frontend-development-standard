@@ -12,9 +12,18 @@ export interface SemanticStyleTokens {
   shadowCard: string;
 }
 
+export interface PreviewLayoutVariants {
+  navVariant: "compact-actions" | "utility-status" | "slogan-cta";
+  heroVariant: "centered-focus" | "split-metrics" | "asymmetric-story";
+  featureVariant: "balanced-grid" | "stacked-capabilities" | "alternating-story";
+  formVariant: "centered-form" | "split-explainer" | "brand-pitch";
+  testimonialVariant: "quote-grid" | "metrics-quotes" | "editorial-quotes";
+}
+
 export interface StyleResult {
   selection: StyleSelection;
   semantic: SemanticStyleTokens;
+  previewLayout: PreviewLayoutVariants;
 }
 
 const colorPalette: Record<OverallStyle, Record<ColorTendency, string>> = {
@@ -62,6 +71,30 @@ const radiusPalette: Record<ComponentCharacter, number> = {
   bordered: 8
 };
 
+const previewLayoutPalette: Record<OverallStyle, PreviewLayoutVariants> = {
+  minimal: {
+    navVariant: "compact-actions",
+    heroVariant: "centered-focus",
+    featureVariant: "balanced-grid",
+    formVariant: "centered-form",
+    testimonialVariant: "quote-grid"
+  },
+  tech: {
+    navVariant: "utility-status",
+    heroVariant: "split-metrics",
+    featureVariant: "stacked-capabilities",
+    formVariant: "split-explainer",
+    testimonialVariant: "metrics-quotes"
+  },
+  brand: {
+    navVariant: "slogan-cta",
+    heroVariant: "asymmetric-story",
+    featureVariant: "alternating-story",
+    formVariant: "brand-pitch",
+    testimonialVariant: "editorial-quotes"
+  }
+};
+
 export function buildStyleResult(selection: StyleSelection): StyleResult {
   return {
     selection: { ...selection },
@@ -69,6 +102,7 @@ export function buildStyleResult(selection: StyleSelection): StyleResult {
       colorPrimary: colorPalette[selection.overallStyle][selection.colorTendency],
       radiusBase: radiusPalette[selection.componentCharacter],
       shadowCard: shadowPalette[selection.componentCharacter][selection.motionIntensity]
-    }
+    },
+    previewLayout: previewLayoutPalette[selection.overallStyle]
   };
 }
