@@ -3,7 +3,7 @@ import { buildStylePrompt } from "../lib/prompt-generator";
 import { buildTailwindHelpers } from "../lib/tailwind-helpers";
 
 describe("buildStylePrompt", () => {
-  it("describes the chosen visual direction", () => {
+  it("exports a structured prompt with layout-aware sections", () => {
     const prompt = buildStylePrompt({
       overallStyle: "tech",
       colorTendency: "cool",
@@ -11,9 +11,12 @@ describe("buildStylePrompt", () => {
       motionIntensity: "light"
     });
 
-    expect(prompt).toBe(
-      "Visual direction: tech. Color tendency: cool. Component character: card. Motion intensity: light. Use React and Ant Design components. Keep the result cohesive, restrained, and consistent with the chosen direction."
-    );
+    expect(prompt).toContain("## 整体风格目标");
+    expect(prompt).toContain("## 页面布局骨架");
+    expect(prompt).toContain("## 视觉约束");
+    expect(prompt).toContain("## 片段级布局要求");
+    expect(prompt).toContain("Hero 使用左右双栏，左侧标题和按钮，右侧指标面板。");
+    expect(prompt).toContain("使用 React + Ant Design 组件。");
   });
 });
 
