@@ -36,10 +36,12 @@ describe("App", () => {
     fireEvent.click(aiPromptTab);
     expect(antdThemeTab.getAttribute("aria-selected")).toBe("false");
     expect(aiPromptTab.getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByText(/## 整体风格目标/)).toBeTruthy();
+    expect(screen.getByText(/## 页面布局骨架/)).toBeTruthy();
+    expect(screen.getByText(/## 视觉约束/)).toBeTruthy();
+    expect(screen.getByText(/## 片段级布局要求/)).toBeTruthy();
     expect(
-      screen.getByText(
-        "Visual direction: minimal. Color tendency: cool. Component character: flat. Motion intensity: light. Use React and Ant Design components. Keep the result cohesive, restrained, and consistent with the chosen direction."
-      )
+      screen.getByText(/Hero 使用居中单栏，标题、说明和按钮沿同一中轴组织/)
     ).toBeTruthy();
 
     fireEvent.click(tailwindHelpersTab);
@@ -58,9 +60,7 @@ describe("App", () => {
 
     fireEvent.click(aiPromptTab);
     expect(
-      screen.getByText(
-        "Visual direction: tech. Color tendency: cool. Component character: flat. Motion intensity: light. Use React and Ant Design components. Keep the result cohesive, restrained, and consistent with the chosen direction."
-      )
+      screen.getByText(/Hero 使用左右双栏，左侧标题和按钮，右侧指标面板。/)
     ).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: "品牌" }));
